@@ -5,7 +5,7 @@ re='^[0-9]+$'
 ESC_HOSTNAME=`echo $HOSTNAME | tr . _`
 sigma_numerator=0.00
 sigma_denominator=0.00
-for INT_LIST in `ls /sys/class/net | sort | uniq`
+for INT_LIST in `ls /sys/class/net | sort | uniq | grep -v "bonding_masters"`
 do
  ethString=`sudo ethtool $INT_LIST`
  speed=`echo $ethString | grep Speed | sed 's/^.*Speed: \([0-9]\+\).*$/\1/'`
